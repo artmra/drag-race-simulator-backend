@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+
+  db:
+    container_name: db_poke_drag_race
+    image: mysql:8.0
+    # NOTE: use of "mysql_native_password" is not recommended: https://dev.mysql.com/doc/refman/8.0/en/upgrading-from-previous-series.html#upgrade-caching-sha2-password
+    # (this is just an example, not intended to be a production configuration)
+    command: --default-authentication-plugin=mysql_native_password
+#    restart: always
+    ports:
+      - "2900:3306"
+    volumes:
+      - ./database:/var/lib/mysql
+    environment:
+      MYSQL_USER: producer
+      MYSQL_PASSWORD: producer123
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: drag_race_simulator

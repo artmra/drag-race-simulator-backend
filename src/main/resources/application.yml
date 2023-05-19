@@ -1,0 +1,12 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:2900}/${MYSQL_SCHEMA_NAME:drag_race_simulator}
+    username: ${MYSQL_USERNAME:producer}
+    password: ${MYSQL_PASSWORD:producer123}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+server:
+  port: ${SERVER_PORT:2901}
