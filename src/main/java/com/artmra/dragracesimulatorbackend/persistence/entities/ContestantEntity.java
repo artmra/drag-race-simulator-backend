@@ -63,6 +63,16 @@ public class ContestantEntity {
     private Set<SeasonEntity> staredSeasons;
 
     // ligacao com lipsyncs
+    @Getter
+    @Setter
+    @OneToMany(mappedBy = "contestant")
+    private Set<LipSyncPerformanceEntity> lipSyncPerformances;
 
     // ligacao com challenges
+
+    // ganhadora
+    @Getter
+    @Setter
+    @Column(columnDefinition = "boolean default false")
+    private boolean winner;
 }
