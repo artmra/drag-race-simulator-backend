@@ -13,11 +13,10 @@ import java.util.Set;
 @Entity
 @Table(name = "relationship")
 public class RelationshipEntity {
-    @Id
+    @EmbeddedId
     @Getter
     @Setter
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private RelationshipKey id;
 
     @Getter
     @Setter
@@ -26,10 +25,15 @@ public class RelationshipEntity {
 
     @Getter
     @Setter
-    @ManyToMany
-    @JoinTable(
-            name = "contestant_relationship",
-            joinColumns = @JoinColumn(name = "contestant_id"),
-            inverseJoinColumns = @JoinColumn(name = "relationship_id"))
-    private Set<ContestantEntity> connectedContestants;
+    @ManyToOne
+    @MapsId("contestantAId")
+    @JoinColumn(name = "contestant_a_id")
+    private ContestantEntity contestantA;
+
+    @Getter
+    @Setter
+    @ManyToOne
+    @MapsId("contestantBId")
+    @JoinColumn(name = "contestant_b_id")
+    private ContestantEntity contestantB;
 }

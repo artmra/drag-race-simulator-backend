@@ -30,5 +30,9 @@ public class HausEntity {
     @Getter
     @Setter
     @OneToMany(mappedBy = "haus")
+//    @JoinTable(
+//            name = "contestants_hauses",
+//            joinColumns = @JoinColumn(name = "contestant_id"),
+//            inverseJoinColumns = @JoinColumn(name = "haus_id"))
     private Set<ContestantEntity> members;
 }

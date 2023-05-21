@@ -47,14 +47,23 @@ public class ContestantEntity {
     @Getter
     @Setter
     @ManyToOne
-    @JoinColumn(name = "haus_id", nullable = true)
+    @JoinTable(
+            name = "contestants_hauses",
+            joinColumns = @JoinColumn(name = "contestant_id"),
+            inverseJoinColumns = @JoinColumn(name = "haus_id"))
+//    @JoinColumn(table = "contestants_hauses", name = "haus_id")
     private HausEntity haus;
 
     // participantes com os quais possui alguma relação
     @Getter
     @Setter
-    @ManyToMany(mappedBy = "connectedContestants")
-    private Set<RelationshipEntity> relationships;
+    @OneToMany(mappedBy = "contestantA")
+    private Set<RelationshipEntity> relationshipAsPartA;
+
+    @Getter
+    @Setter
+    @OneToMany(mappedBy = "contestantA")
+    private Set<RelationshipEntity> relationshipAsPartB;
 
     // ligacao com temporadas
     @Getter
